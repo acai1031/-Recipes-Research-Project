@@ -106,6 +106,7 @@ This show that the distribution could be approximate as a right skewed gaussian 
 
 <iframe src="assets/Distribution_of_Number_of_Recipe_Submission.html" width=800 height=600 frameBorder=0></iframe>
 It is evident that there was a high level of activity in the initial years, with a particularly notable peak at the beginning. This could be indicative of an initial surge of enthusiasm when the platform was newly established or gaining popularity. Moving through the timeline, a gradual decline in submissions becomes apparent, interspersed with occasional spikes. These peaks may align with seasonal culinary events or holidays when users are more likely to share their creations. The dips, conversely, could signify quieter periods or a broader trend of diminishing submissions as the platform matured.<br>
+<br>
 
 ### Bivariate Analysis
 <iframe src="assets/bivariate_scatter_plot.html" width=800 height=600 frameBorder=0></iframe>
@@ -113,6 +114,7 @@ This visualization reveals no obvious trend relating the number of steps to the 
 
 <iframe src="assets/bivariate_line_plot.html" width=800 height=600 frameBorder=0></iframe>
 The line chart reveals a generally stable trend with several noticeable peaks. These outliers could be due to the submission of particularly complex recipes which influence the average at that time. Apart from the outliers, the average cooking time remains relatively consistent month-to-month around 70mins, which might indicate a steady preference for recipes that fit within a typical time commitment for daily cooking. This consistency implies that the food.com community values recipes that are practical and manageable in terms of preparation time.<br>
+<br>
 
 ### Interesting Aggregates
 In the aggregates analysis, we will study the sodium with the variety of ingredients. <br>
@@ -140,16 +142,41 @@ This line chart suggests that as the number of ingredients in a recipe increases
 ### NMAR Analysis
 We believe the missingness of the review is Not Missing At Random (NMAR). This missingness might due to several reasons. Firstly, reviews are often driven by extremely positive or negative experiences. If people have a neutral or indifferent experience, they may not feel strongly compelled to share their thoughts on this recipe. Secondly, Moreover, in today's fast-paced world, people may feel that they don't have the time to write a thoughtful review. Busy schedules and other priorities can lead individuals to skip the review process. Also, some people might not feel confident in their ability to provide a well-informed review, especially if they are not experts in cooking. <br>
 By adding a personal cooking level evaluation for every person who use this recipe, we could know their confidence level of cooking, and thus explain the missingness of reviews (thereby making it MAR).<br>
+<br>
 
 ### Missingness Dependency
 Discuss and testing the missingness of the rating whether depends on n_steps, the number of cooking steps, and minutes, the cooking duration. <br>
 
 1. n_steps and rating
 
-> H0: The distribution of 'n_steps' when 'rating' is missing is the same as the distribution of 'n_steps' when 'rating' is not missing.<br>
-H1: The distribution of 'n_steps' when 'rating' is missing is different from the distribution of 'n_steps' when 'rating' is not missing.<br>
-Test statistic: Absolute difference in 'n_steps' means between two groups. <br>
-Significant level: 0.05
+    H0: The distribution of 'n_steps' when 'rating' is missing is the same as the distribution of 'n_steps' when 'rating' is not missing.<br>
+    H1: The distribution of 'n_steps' when 'rating' is missing is different from the distribution of 'n_steps' when 'rating' is not missing.<br>
+    Test statistic: Absolute difference in 'n_steps' means between two groups. <br>
+    Significant level: 0.05
 
+
+<iframe src="assets/missingness_n_steps.html" width=800 height=600 frameBorder=0></iframe>
+We use permutation test to shuffle the missingness of rating 1000 times and get 1000 simulating results about the absolute difference. <br>
+
+<iframe src="assets/empirical_n_steps.html" width=800 height=600 frameBorder=0></iframe>
+We reject the null hypothesis that the 'rating' is independent on the 'n_steps', because the p-val is 0.0 < 0.05. Based on our test result, we may conclude that the missingness of the rating is MAR the rating is dependent on the number of cooking steps. <br>
+
+
+2. minutes and rating
+    H0: The distribution of 'minutes' when 'rating' is missing is the same as the distribution of 'minutes' when 'rating' is not missing.<br>
+    H1: The distribution of 'minutes' when 'rating' is missing is different from the distribution of 'minutes' when 'rating' is not missing.<br>
+    Test statistic: Absolute difference in 'minutes' means between two groups. <br>
+    Significant level: 0.05
+
+<iframe src="assets/missingness_minutes.html" width=800 height=600 frameBorder=0></iframe>
+We use permutation test to shuffle the missingness of rating 1000 times and get 1000 simulating results about the absolute difference. <br>
+
+<iframe src="assets/empirical_minutes.html" width=800 height=600 frameBorder=0></iframe>
+We fail to reject the null hypothesis that the 'rating' is independent on the 'minutes', because the p-val is  0.13 > 0.05. Based on our test result, we may conclude that the missingness of the rating is MCAR, that the rating is not dependent on cooking duration.  <br>
+
+
+---
+
+## Hypothesis Testing
 
 

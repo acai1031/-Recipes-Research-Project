@@ -107,24 +107,24 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 ### Univariate Analysis
 In the univariate analysis, we would analyze the distribution of number of steps and the distribution of number of recipe submission.<br>
 
-<iframe src="assets/Distribution_of_Number_of_Steps.html" width=800 height=600 frameBorder=0></iframe> <br>
+<iframe src="assets/Distribution_of_Number_of_Steps.html" width=900 height=600 frameBorder=0></iframe> <br>
 This show that the distribution could be approximate as a right skewed gaussian distribution. By the shape of this distribution, most recipes have a lower number of steps, with a quick drop-off as the number of steps increases, indicating a concentration of simpler recipes with fewer steps. We would say this graph is centered approximately at 8. The peak of the histogram is in the lower range of the step count, emphasizing that the majority of the recipes are relatively easy to follow and likely cater to individuals seeking quick and straightforward meal preparation. The long tail to the right suggests that while there are recipes with many steps, they are less common. The graph suggests a user-friendly approach by food.com, focusing on less complex recipes that align with the fast-paced lifestyles of many users, while still offering options for those who enjoy the intricacy and challenge of more elaborate recipes.<br>
 
-<iframe src="assets/Distribution_of_Number_of_Recipe_Submission.html" width=800 height=600 frameBorder=0></iframe> <br>
+<iframe src="assets/Distribution_of_Number_of_Recipe_Submission.html" width=900 height=600 frameBorder=0></iframe> <br>
 It is evident that there was a high level of activity in the initial years, with a particularly notable peak at the beginning. This could be indicative of an initial surge of enthusiasm when the platform was newly established or gaining popularity. Moving through the timeline, a gradual decline in submissions becomes apparent, interspersed with occasional spikes. These peaks may align with seasonal culinary events or holidays when users are more likely to share their creations. The dips, conversely, could signify quieter periods or a broader trend of diminishing submissions as the platform matured.<br>
 <br>
 
 ### Bivariate Analysis
-<iframe src="assets/bivariate_scatter_plot.html" width=800 height=600 frameBorder=0></iframe> <br>
+<iframe src="assets/bivariate_scatter_plot.html" width=900 height=600 frameBorder=0></iframe> <br>
 This visualization reveals no obvious trend relating the number of steps to the time of submission, suggesting that the complexity of recipes—as measured by the number of steps—has remained diverse throughout the years. Recipes with a broad range of complexity are submitted in every month with no clear pattern of increase or decrease over time. The scatter plot is densest at the lower end of the x-axis, indicating that recipes with fewer steps are more commonly submitted. This density gradually thins out as the number of steps increases, implying that less complex recipes are more prevalent on the platform. <br>
 
-<iframe src="assets/bivariate_line_plot.html" width=800 height=600 frameBorder=0></iframe> <br>
+<iframe src="assets/bivariate_line_plot.html" width=900 height=600 frameBorder=0></iframe> <br>
 The line chart reveals a generally stable trend with several noticeable peaks. These outliers could be due to the submission of particularly complex recipes which influence the average at that time. Apart from the outliers, the average cooking time remains relatively consistent month-to-month around 70mins, which might indicate a steady preference for recipes that fit within a typical time commitment for daily cooking. This consistency implies that the food.com community values recipes that are practical and manageable in terms of preparation time.<br>
 <br>
 
 ### Interesting Aggregates
 In the aggregates analysis, we will study the sodium with the variety of ingredients. <br>
-The pivot table for the sodium and ingredients: <br>
+The head of pivot table for the sodium and ingredients: <br>
 
 |    |   ('n_ingredients', '') |   ('mean', 'sodium') |   ('median', 'sodium') |   ('min', 'sodium') |   ('max', 'sodium') |
 |---:|------------------------:|---------------------:|-----------------------:|--------------------:|--------------------:|
@@ -134,11 +134,11 @@ The pivot table for the sodium and ingredients: <br>
 |  3 |                       4 |              18.2441 |                    4   |                   0 |                3540 |
 |  4 |                       5 |              25.4564 |                    7   |                   0 |               29338 |
 
-<iframe src="assets/agg_plot_all.html" width=800 height=600 frameBorder=0></iframe> <br>
+<iframe src="assets/agg_plot_all.html" width=900 height=600 frameBorder=0></iframe> <br>
 Given the wide range of sodium content across different ingredients, we focus on the median to assess the relationship between sodium content and the diversity of ingredients. The median serves as a robust measure to capture the central tendency of sodium levels in recipes, regardless of the individual sodium variability of each ingredient. By examining the median, we can gain insights into the overall sodium profile as it relates to the variety of ingredients included in the recipes.<br>
 
 
-<iframe src="assets/agg_plot_median.html" width=800 height=600 frameBorder=0></iframe> <br>
+<iframe src="assets/agg_plot_median.html" width=900 height=600 frameBorder=0></iframe> <br>
 This line chart suggests that as the number of ingredients in a recipe increases, there is a general trend of rising sodium content. However, the relationship is not strictly linear, as indicated by the fluctuations in the line. These variations could point to the diversity of recipe types—those with more ingredients do not necessarily have to be higher in sodium, depending on the nature of the ingredients used.<br>
 
 
@@ -160,12 +160,13 @@ Discuss and testing the missingness of the rating whether depends on n_steps, th
     Test statistic: Absolute difference in 'n_steps' means between two groups. <br>
     Significant level: 0.05
 
+The plot below is the distribution of n_steps with and without rating. We observe that there is a big difference between two distributions.<br>
+<iframe src="assets/missingness_n_steps.html" width=900 height=600 frameBorder=0></iframe> <br>
 
-<iframe src="assets/missingness_n_steps.html" width=800 height=600 frameBorder=0></iframe> <br>
 We use permutation test to shuffle the missingness of rating 1000 times and get 1000 simulating results about the absolute difference. <br>
+<iframe src="assets/empirical_n_steps.html" width=900 height=600 frameBorder=0></iframe> <br>
 
-<iframe src="assets/empirical_n_steps.html" width=800 height=600 frameBorder=0></iframe> <br>
-We reject the null hypothesis that the 'rating' is independent on the 'n_steps', because the p-val is 0.0 < 0.05. Based on our test result, we may conclude that the missingness of the rating is MAR the rating is dependent on the number of cooking steps. <br>
+From the graph above and the result of permutation test, We reject the null hypothesis that the 'rating' is independent on the 'n_steps', because the p-val is 0.0 < 0.05. Based on our test result, we may conclude that the missingness of the rating is MAR the rating is dependent on the number of cooking steps. <br>
 <br>
 
 
@@ -176,11 +177,13 @@ We reject the null hypothesis that the 'rating' is independent on the 'n_steps',
     Test statistic: Absolute difference in 'minutes' means between two groups. <br>
     Significant level: 0.05
 
-<iframe src="assets/missingness_minutes.html" width=800 height=600 frameBorder=0></iframe> <br>
-We use permutation test to shuffle the missingness of rating 1000 times and get 1000 simulating results about the absolute difference. <br>
+The plot below is the distribution of minutes with and without rating. We observe that the distributions are quite similar between each other.<br>
+<iframe src="assets/missingness_minutes.html" width=900 height=600 frameBorder=0></iframe> <br>
 
-<iframe src="assets/empirical_minutes.html" width=800 height=600 frameBorder=0></iframe> <br>
-We fail to reject the null hypothesis that the 'rating' is independent on the 'minutes', because the p-val is  0.13 > 0.05. Based on our test result, we may conclude that the missingness of the rating is MCAR, that the rating is not dependent on cooking duration.  <br>
+We use permutation test to shuffle the missingness of rating 1000 times and get 1000 simulating results about the absolute difference. <br>
+<iframe src="assets/empirical_minutes.html" width=900 height=600 frameBorder=0></iframe> <br>
+
+From the graph above and the result of permutation test, we fail to reject the null hypothesis that the 'rating' is independent on the 'minutes', because the p-val is  0.13 > 0.05. Based on our test result, we may conclude that the missingness of the rating is MCAR, that the rating is not dependent on cooking duration.  <br>
 
 
 ---
@@ -200,7 +203,7 @@ For this analysis, we will categorize recipes based on their caloric content. We
 We opt for a one-sided test because it is consistent with our assumption that higher caloric content has a one-directional impact on recipe ratings, potentially leading to lower ratings for high-calorie recipes compared to their low-calorie counterparts.<br>
 
 
-<iframe src="assets/hypothesis_test.html" width=800 height=600 frameBorder=0></iframe> <br>
+<iframe src="assets/hypothesis_test.html" width=900 height=600 frameBorder=0></iframe> <br>
 The plot above shows the empirical distribution of our test statistics in 10000 permutations, the red line indicates the observed test statistics.<br>
 
 

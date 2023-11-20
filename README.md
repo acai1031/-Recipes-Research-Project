@@ -21,6 +21,7 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 ### Data Cleaning
 #### Cleaning Process
 1. Checking data type <br>
+
 |                | 0      |
 |:---------------|:-------|
 | name           | object |
@@ -36,8 +37,13 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 | ingredients    | object |
 | n_ingredients  | int64  |
 
+<br>
 
-print(raw_recipes.dtypes.to_markdown())
+'|                | 0      |\n|:---------------|:-------|\n| name           | object |\n| id             | int64  |\n| minutes        | int64  |\n| contributor_id | int64  |\n| submitted      | object |\n| tags           | object |\n| nutrition      | object |\n| n_steps        | int64  |\n| steps          | object |\n| description    | object |\n| ingredients    | object |\n| n_ingredients  | int64  |'
+
+<br>
+
+|                | 0      |\n|:---------------|:-------|\n| name           | object |\n| id             | int64  |\n| minutes        | int64  |\n| contributor_id | int64  |\n| submitted      | object |\n| tags           | object |\n| nutrition      | object |\n| n_steps        | int64  |\n| steps          | object |\n| description    | object |\n| ingredients    | object |\n| n_ingredients  | int64  |
 
 2. Convert time information `submitted` and `date` into datetime
 3. Convert the value of `tags`, `steps`, and `ingredients` columns into list of strings
@@ -53,7 +59,7 @@ print(raw_recipes.dtypes.to_markdown())
     - columns
     [`name`, `recipe_id`, `minutes`, `contributor_id`, `submitted`, `tags`, `n_steps`, `steps`, `description`, `ingredients`, `n_ingredients`, `calories`, `total fat`, `sugar`, `sodium`, `protein`, `saturated fat`, `carbohydrates`, `avg_rating`]
     - datatype
-    |                | 0              |\n|:---------------|:---------------|\n| name           | object         |\n| recipe_id      | int64          |\n| minutes        | int64          |\n| contributor_id | int64          |\n| submitted      | datetime64[ns] |\n| tags           | object         |\n| n_steps        | int64          |\n| steps          | object         |\n| description    | object         |\n| ingredients    | object         |\n| n_ingredients  | int64          |\n| calories       | float64        |\n| total fat      | float64        |\n| sugar          | float64        |\n| sodium         | float64        |\n| protein        | float64        |\n| saturated fat  | float64        |\n| carbohydrates  | float64        |\n| avg_rating     | float64        |
+    
     - the head of `recipe` DataFrame with important columns:
 
 

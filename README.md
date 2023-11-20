@@ -36,6 +36,9 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 | ingredients    | object |
 | n_ingredients  | int64  |
 
+
+print(raw_recipes.dtypes.to_markdown())
+
 2. Convert time information `submitted` and `date` into datetime
 3. Convert the value of `tags`, `steps`, and `ingredients` columns into list of strings
 4. Create individual columns for each value in the `nutrition` column, titled as `calories`, `total fat`, `sugar`, `sodium`, `protein`, `saturated fat`, and `carbohydrates`

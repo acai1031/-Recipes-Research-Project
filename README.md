@@ -1,5 +1,6 @@
 # -Recipes-Research-Project
 This project, conducted for DSC80, involves data cleaning, exploratory data analysis, evaluation of missing data, and the implementation of permutation tests. The content on this website serves as a presentation of our research outcomes. <br>
+<br>
 **Name(s)**: Kristina Wu and Yishan Cai <br>
 
 ## Introduction
@@ -19,7 +20,7 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 
 ## Cleaning and EDA
 ### Data Cleaning
-#### Cleaning Process
+### Cleaning Process
 1. Checking data type <br>
 
 |                | 0      |
@@ -44,33 +45,33 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 6. Fill all ratings of 0 with np.nan. #missing justification.
 7. Find the average rating per recipe, as a Series, named as `avg_rating` and assign this series back to the recipes dataset.
 
-#### Cleaning Result
+### Cleaning Result
 1. cleaned recipe dataframe `recipe`
     - shape <br>
     (83782, 19)
     - datatype <br>
 
-|                | 0              |
-|:---------------|:---------------|
-| name           | object         |
-| recipe_id      | int64          |
-| minutes        | int64          |
-| contributor_id | int64          |
-| submitted      | datetime64[ns] |
-| tags           | object         |
-| n_steps        | int64          |
-| steps          | object         |
-| description    | object         |
-| ingredients    | object         |
-| n_ingredients  | int64          |
-| calories       | float64        |
-| total fat      | float64        |
-| sugar          | float64        |
-| sodium         | float64        |
-| protein        | float64        |
-| saturated fat  | float64        |
-| carbohydrates  | float64        |
-| avg_rating     | float64        |
+    |                | 0              |
+    |:---------------|:---------------|
+    | name           | object         |
+    | recipe_id      | int64          |
+    | minutes        | int64          |
+    | contributor_id | int64          |
+    | submitted      | datetime64[ns] |
+    | tags           | object         |
+    | n_steps        | int64          |
+    | steps          | object         |
+    | description    | object         |
+    | ingredients    | object         |
+    | n_ingredients  | int64          |
+    | calories       | float64        |
+    | total fat      | float64        |
+    | sugar          | float64        |
+    | sodium         | float64        |
+    | protein        | float64        |
+    | saturated fat  | float64        |
+    | carbohydrates  | float64        |
+    | avg_rating     | float64        |
 
    - the head of `recipe` DataFrame with important columns: <br>
 

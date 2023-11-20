@@ -1,5 +1,5 @@
 # -Recipes-Research-Project
-This project, conducted for DSC80, involves data cleaning, exploratory data analysis, evaluation of missing data, and the implementation of permutation tests. The content on this website serves as a presentation of our research outcomes.
+This project, conducted for DSC80, involves data cleaning, exploratory data analysis, evaluation of missing data, and the implementation of permutation tests. The content on this website serves as a presentation of our research outcomes. <br>
 **Name(s)**: Kristina Wu and Yishan Cai <br>
 
 ## Introduction

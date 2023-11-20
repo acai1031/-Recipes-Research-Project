@@ -37,14 +37,6 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 | ingredients    | object |
 | n_ingredients  | int64  |
 
-<br>
-
-'|                | 0      |\n|:---------------|:-------|\n| name           | object |\n| id             | int64  |\n| minutes        | int64  |\n| contributor_id | int64  |\n| submitted      | object |\n| tags           | object |\n| nutrition      | object |\n| n_steps        | int64  |\n| steps          | object |\n| description    | object |\n| ingredients    | object |\n| n_ingredients  | int64  |'
-
-<br>
-
-|                | 0      |\n|:---------------|:-------|\n| name           | object |\n| id             | int64  |\n| minutes        | int64  |\n| contributor_id | int64  |\n| submitted      | object |\n| tags           | object |\n| nutrition      | object |\n| n_steps        | int64  |\n| steps          | object |\n| description    | object |\n| ingredients    | object |\n| n_ingredients  | int64  |
-
 2. Convert time information `submitted` and `date` into datetime
 3. Convert the value of `tags`, `steps`, and `ingredients` columns into list of strings
 4. Create individual columns for each value in the `nutrition` column, titled as `calories`, `total fat`, `sugar`, `sodium`, `protein`, `saturated fat`, and `carbohydrates`
@@ -53,14 +45,55 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 7. Find the average rating per recipe, as a Series, named as `avg_rating` and assign this series back to the recipes dataset.
 
 #### Cleaning Result
-1. cleaned recipe dataframe
-    - shape
+1. cleaned recipe dataframe `recipe`
+    - shape <br>
     (83782, 19)
-    - columns
-    [`name`, `recipe_id`, `minutes`, `contributor_id`, `submitted`, `tags`, `n_steps`, `steps`, `description`, `ingredients`, `n_ingredients`, `calories`, `total fat`, `sugar`, `sodium`, `protein`, `saturated fat`, `carbohydrates`, `avg_rating`]
-    - datatype
-    
-    - the head of `recipe` DataFrame with important columns:
+    - datatype <br>
+
+|                | 0              |
+|:---------------|:---------------|
+| name           | object         |
+| recipe_id      | int64          |
+| minutes        | int64          |
+| contributor_id | int64          |
+| submitted      | datetime64[ns] |
+| tags           | object         |
+| n_steps        | int64          |
+| steps          | object         |
+| description    | object         |
+| ingredients    | object         |
+| n_ingredients  | int64          |
+| calories       | float64        |
+| total fat      | float64        |
+| sugar          | float64        |
+| sodium         | float64        |
+| protein        | float64        |
+| saturated fat  | float64        |
+| carbohydrates  | float64        |
+| avg_rating     | float64        |
+
+   - the head of `recipe` DataFrame with important columns: <br>
+
+| name                                 |   recipe_id |   minutes | submitted           |   n_steps |   avg_rating |
+|:-------------------------------------|------------:|----------:|:--------------------|----------:|-------------:|
+| 1 brownies in the world    best ever |      333281 |        40 | 2008-10-27 00:00:00 |        10 |            4 |
+| 1 in canada chocolate chip cookies   |      453467 |        45 | 2011-04-11 00:00:00 |        12 |            5 |
+| 412 broccoli casserole               |      306168 |        40 | 2008-05-30 00:00:00 |         6 |            5 |
+
+2. cleaned merged dataframe `df`
+    - shape <br>
+    (234429, 23)
+    - the head of `df` DataFrame with important columns: <br>
+
+| name                                 |   recipe_id | review                                                                                                                                                                                                                                                                                                                                           |   rating |   avg_rating |
+|:-------------------------------------|------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------:|-------------:|
+| 1 brownies in the world    best ever |      333281 | These were pretty good, but took forever to bake.  I would send it ended up being almost an hour!  Even then, the brownies stuck to the foil, and were on the overly moist side and not easy to cut.  They did taste quite rich, though!  Made for My 3 Chefs.                                                                                   |        4 |            4 |
+| 1 in canada chocolate chip cookies   |      453467 | Originally I was gonna cut the recipe in half (just the 2 of us here), but then we had a park-wide yard sale, & I made the whole batch & used them as enticements for potential buyers ~ what the hey, a free cookie as delicious as these are, definitely works its magic! Will be making these again, for sure! Thanks for posting the recipe! |        5 |            5 |
+| 412 broccoli casserole               |      306168 | This was one of the best broccoli casseroles that I have ever made.  I made my own chicken soup for this recipe. I was a bit worried about the tsp of soy sauce but it gave the casserole the best flavor. YUM!                                                                                                                                  |        5 |            5 |
+|                                      |             | The photos you took (shapeweaver) inspired me to make this recipe and it actually does look just like them when it comes out of the oven.                                                                                                                                                                                                        |          |              |
+|                                      |             | Thanks so much for sharing your recipe shapeweaver. It was wonderful!  Going into my family's favorite Zaar cookbook :)                                                                                                                                                                                                                          |          |              |
+
+
 
 
 

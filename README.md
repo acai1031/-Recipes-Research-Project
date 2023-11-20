@@ -1,4 +1,4 @@
-# -Recipes-Research-Project
+# Recipes and Ratings Data Analysis
 This project, conducted for DSC80, involves data cleaning, exploratory data analysis, evaluation of missing data, and the implementation of permutation tests. The content on this website serves as a presentation of our research outcomes. <br>
 <br>
 **Names**: Kristina Wu and Yishan Cai <br>
@@ -23,7 +23,8 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 
 ## Data Cleaning
 ### Cleaning Process
-1. Checking data type <br>
+1. Check data type <br>
+    To see which columns need to be cleaned.<br>
 
     |                | 0      |
     |:---------------|:-------|
@@ -40,12 +41,16 @@ Furthermore, we will probe into the research question surrounding consumer prefe
     | ingredients    | object |
     | n_ingredients  | int64  |
 
-2. Convert time information `submitted` and `date` into datetime
-3. Convert the value of `tags`, `steps`, and `ingredients` columns into list of strings
-4. Create individual columns for each value in the `nutrition` column, titled as `calories`, `total fat`, `sugar`, `sodium`, `protein`, `saturated fat`, and `carbohydrates`
-5. Left merge the recipes and interactions datasets together.
-6. Fill all ratings of 0 with np.nan. #missing justification.
-7. Find the average rating per recipe, as a Series, named as `avg_rating` and assign this series back to the recipes dataset.
+2. Adjust column datatype<br>
+    Convert `submitted` and `date` columns into datetime for easy calculation and get time information from time stamps.<br>
+    Convert the value of `tags`, `steps`, and `ingredients` columns into list of strings. <br>
+3. Convert `nutrition` column to list format, and assign each value into individual columns<br>
+    The `nutrition` is shown with string datatype, which is incorrect from the perspective of its content. Thus, we convert it into list of floats, and create individual columns for each kind of nutrition, with column names `calories`, `total fat`, `sugar`, `sodium`, `protein`, `saturated fat`, and `carbohydrates`.
+4. Left merge the recipes and interactions datasets together<br>
+    Merge on unique `recipe_id` for easy comparison and connection between recipe and rating.<br>
+5. Fill all ratings of 0 with np.nan<br>
+    The existence of rating 0 might due to missingness value that people forget to fill in the rate for this recipe, and thus set to a default value 0. Thus, we replace 0 with np.nan to show missingness.
+6. Find the average rating per recipe, as a Series, named as `avg_rating` and assign this series back to the recipes dataset.
 
 ### Cleaning Result
 1. cleaned recipe dataframe `recipe`
@@ -148,7 +153,7 @@ By adding a personal cooking level evaluation for every person who use this reci
 ### Missingness Dependency
 Discuss and testing the missingness of the rating whether depends on n_steps, the number of cooking steps, and minutes, the cooking duration. <br>
 
-1. n_steps and rating <br>
+- n_steps and rating <br>
 
     H0: The distribution of 'n_steps' when 'rating' is missing is the same as the distribution of 'n_steps' when 'rating' is not missing.<br>
     H1: The distribution of 'n_steps' when 'rating' is missing is different from the distribution of 'n_steps' when 'rating' is not missing.<br>
@@ -161,9 +166,10 @@ We use permutation test to shuffle the missingness of rating 1000 times and get 
 
 <iframe src="assets/empirical_n_steps.html" width=800 height=600 frameBorder=0></iframe> <br>
 We reject the null hypothesis that the 'rating' is independent on the 'n_steps', because the p-val is 0.0 < 0.05. Based on our test result, we may conclude that the missingness of the rating is MAR the rating is dependent on the number of cooking steps. <br>
+<br>
 
 
-2. minutes and rating <br>
+- minutes and rating <br>
 
     H0: The distribution of 'minutes' when 'rating' is missing is the same as the distribution of 'minutes' when 'rating' is not missing.<br>
     H1: The distribution of 'minutes' when 'rating' is missing is different from the distribution of 'minutes' when 'rating' is not missing.<br>
@@ -186,7 +192,8 @@ The research question we intend to examine is whether recipes with different cal
 For this analysis, we will categorize recipes based on their caloric content. We define a recipe as "high-calorie" if it contains calories greater than the median calorie count of all recipes. We will utilize a permutation test to assess the differences in average ratings between high-calorie and low-calorie recipes.<br>
 
 **Null Hypothesis (H0)**: people are rating all recipes, irrespective of their caloric content, on the same scale.<br>
-**Alternative Hypothesis (H1)**: high-calorie recipes receive lower ratings. This is based on the assumption that users may perceive high-calorie recipes as less healthy and therefore may rate them lower as part of a trend towards health consciousness.<br>
+**Alternative Hypothesis (H1)**: high-calorie recipes receive lower ratings. This is based on the assumption that users may perceive high-calorie recipes as less healthy and therefore may rate them lower as part of a trend towards health consciousness.<br><br>
+
 **Test statistic**: Difference in average ratings.<br>
 **Significant level**: 0.05 <br>
 
@@ -194,7 +201,7 @@ We opt for a one-sided test because it is consistent with our assumption that hi
 
 
 <iframe src="assets/hypothesis_test.html" width=800 height=600 frameBorder=0></iframe> <br>
-The plot below shows the empirical distribution of our test statistics in 10000 permutations, the red line indicates the observed test statistics.<br>
+The plot above shows the empirical distribution of our test statistics in 10000 permutations, the red line indicates the observed test statistics.<br>
 
 
 ### Conclusion

@@ -20,8 +20,21 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 ## Cleaning and EDA
 ### Data Cleaning
 #### Cleaning Process
-1. Checking data type 
-|                | 0      |\n|:---------------|:-------|\n| name           | object |\n| id             | int64  |\n| minutes        | int64  |\n| contributor_id | int64  |\n| submitted      | object |\n| tags           | object |\n| nutrition      | object |\n| n_steps        | int64  |\n| steps          | object |\n| description    | object |\n| ingredients    | object |\n| n_ingredients  | int64  |
+1. Checking data type <br>
+|                | 0      |
+|:---------------|:-------|
+| name           | object |
+| id             | int64  |
+| minutes        | int64  |
+| contributor_id | int64  |
+| submitted      | object |
+| tags           | object |
+| nutrition      | object |
+| n_steps        | int64  |
+| steps          | object |
+| description    | object |
+| ingredients    | object |
+| n_ingredients  | int64  |
 
 2. Convert time information `submitted` and `date` into datetime
 3. Convert the value of `tags`, `steps`, and `ingredients` columns into list of strings

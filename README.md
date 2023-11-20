@@ -3,6 +3,8 @@ This project, conducted for DSC80, involves data cleaning, exploratory data anal
 <br>
 **Name(s)**: Kristina Wu and Yishan Cai <br>
 
+---
+
 ## Introduction
 The pursuit of culinary delights has become a passion for many, with cooking evolving into an act of self-gratification. In Project 3, we delve deep into a comprehensive dataset of recipes and their corresponding user interactions from food.com. These provide an opportunity to dissect and understand the broader patterns shaping culinary practices and to pinpoint the elements that contribute to a recipe's popularity.<br>
 
@@ -18,8 +20,7 @@ Furthermore, we will probe into the research question surrounding consumer prefe
 
 ---
 
-## Cleaning and EDA
-### Data Cleaning
+## Data Cleaning
 ### Cleaning Process
 1. Checking data type <br>
 
@@ -94,16 +95,61 @@ Furthermore, we will probe into the research question surrounding consumer prefe
     |                                      |             | The photos you took (shapeweaver) inspired me to make this recipe and it actually does look just like them when it comes out of the oven.                                                                                                                                                                                                        |          |              |
     |                                      |             | Thanks so much for sharing your recipe shapeweaver. It was wonderful!  Going into my family's favorite Zaar cookbook :)                                                                                                                                                                                                                          |          |              |
 
+---
 
-
-
-
-
-
-
-
-
-
-
+## Exploratory Data Analysis
+### Univariate Analysis
+In the univariate analysis, we would analyze the distribution of number of steps and the distribution of number of recipe submission.<br>
 
 <iframe src="assets/Distribution_of_Number_of_Steps.html" width=800 height=600 frameBorder=0></iframe>
+This show that the distribution could be approximate as a right skewed gaussian distribution. By the shape of this distribution, most recipes have a lower number of steps, with a quick drop-off as the number of steps increases, indicating a concentration of simpler recipes with fewer steps. We would say this graph is centered approximately at 8. The peak of the histogram is in the lower range of the step count, emphasizing that the majority of the recipes are relatively easy to follow and likely cater to individuals seeking quick and straightforward meal preparation. The long tail to the right suggests that while there are recipes with many steps, they are less common. The graph suggests a user-friendly approach by food.com, focusing on less complex recipes that align with the fast-paced lifestyles of many users, while still offering options for those who enjoy the intricacy and challenge of more elaborate recipes.<br>
+
+<iframe src="assets/Distribution_of_Number_of_Recipe_Submission.html" width=800 height=600 frameBorder=0></iframe>
+It is evident that there was a high level of activity in the initial years, with a particularly notable peak at the beginning. This could be indicative of an initial surge of enthusiasm when the platform was newly established or gaining popularity. Moving through the timeline, a gradual decline in submissions becomes apparent, interspersed with occasional spikes. These peaks may align with seasonal culinary events or holidays when users are more likely to share their creations. The dips, conversely, could signify quieter periods or a broader trend of diminishing submissions as the platform matured.<br>
+
+### Bivariate Analysis
+<iframe src="assets/bivariate_scatter_plot.html" width=800 height=600 frameBorder=0></iframe>
+This visualization reveals no obvious trend relating the number of steps to the time of submission, suggesting that the complexity of recipes—as measured by the number of steps—has remained diverse throughout the years. Recipes with a broad range of complexity are submitted in every month with no clear pattern of increase or decrease over time. The scatter plot is densest at the lower end of the x-axis, indicating that recipes with fewer steps are more commonly submitted. This density gradually thins out as the number of steps increases, implying that less complex recipes are more prevalent on the platform. <br>
+
+<iframe src="assets/bivariate_line_plot.html" width=800 height=600 frameBorder=0></iframe>
+The line chart reveals a generally stable trend with several noticeable peaks. These outliers could be due to the submission of particularly complex recipes which influence the average at that time. Apart from the outliers, the average cooking time remains relatively consistent month-to-month around 70mins, which might indicate a steady preference for recipes that fit within a typical time commitment for daily cooking. This consistency implies that the food.com community values recipes that are practical and manageable in terms of preparation time.<br>
+
+### Interesting Aggregates
+In the aggregates analysis, we will study the sodium with the variety of ingredients. <br>
+The pivot table for the sodium and ingredients: <br>
+
+|    |   ('n_ingredients', '') |   ('mean', 'sodium') |   ('median', 'sodium') |   ('min', 'sodium') |   ('max', 'sodium') |
+|---:|------------------------:|---------------------:|-----------------------:|--------------------:|--------------------:|
+|  0 |                       1 |              26.1429 |                    0.5 |                   0 |                 236 |
+|  1 |                       2 |              53.0428 |                    1   |                   0 |               10677 |
+|  2 |                       3 |              23.3958 |                    3   |                   0 |                4715 |
+|  3 |                       4 |              18.2441 |                    4   |                   0 |                3540 |
+|  4 |                       5 |              25.4564 |                    7   |                   0 |               29338 |
+
+<iframe src="assets/agg_plot_all.html" width=800 height=600 frameBorder=0></iframe>
+Given the wide range of sodium content across different ingredients, we focus on the median to assess the relationship between sodium content and the diversity of ingredients. The median serves as a robust measure to capture the central tendency of sodium levels in recipes, regardless of the individual sodium variability of each ingredient. By examining the median, we can gain insights into the overall sodium profile as it relates to the variety of ingredients included in the recipes.<br>
+
+
+<iframe src="assets/agg_plot_median.html" width=800 height=600 frameBorder=0></iframe>
+This line chart suggests that as the number of ingredients in a recipe increases, there is a general trend of rising sodium content. However, the relationship is not strictly linear, as indicated by the fluctuations in the line. These variations could point to the diversity of recipe types—those with more ingredients do not necessarily have to be higher in sodium, depending on the nature of the ingredients used.<br>
+
+
+---
+
+## Assessment of Missingness
+### NMAR Analysis
+We believe the missingness of the review is Not Missing At Random (NMAR). This missingness might due to several reasons. Firstly, reviews are often driven by extremely positive or negative experiences. If people have a neutral or indifferent experience, they may not feel strongly compelled to share their thoughts on this recipe. Secondly, Moreover, in today's fast-paced world, people may feel that they don't have the time to write a thoughtful review. Busy schedules and other priorities can lead individuals to skip the review process. Also, some people might not feel confident in their ability to provide a well-informed review, especially if they are not experts in cooking. <br>
+By adding a personal cooking level evaluation for every person who use this recipe, we could know their confidence level of cooking, and thus explain the missingness of reviews (thereby making it MAR).<br>
+
+### Missingness Dependency
+Discuss and testing the missingness of the rating whether depends on n_steps, the number of cooking steps, and minutes, the cooking duration. <br>
+
+1. n_steps and rating
+
+> H0: The distribution of 'n_steps' when 'rating' is missing is the same as the distribution of 'n_steps' when 'rating' is not missing.<br>
+H1: The distribution of 'n_steps' when 'rating' is missing is different from the distribution of 'n_steps' when 'rating' is not missing.<br>
+Test statistic: Absolute difference in 'n_steps' means between two groups. <br>
+Significant level: 0.05
+
+
+
